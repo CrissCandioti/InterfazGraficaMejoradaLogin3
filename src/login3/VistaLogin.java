@@ -1,6 +1,12 @@
 package login3;
 
 import com.formdev.flatlaf.FlatClientProperties;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.FlowLayout;
+import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -38,7 +44,7 @@ public class VistaLogin extends JPanel {
 
         JTextFieldUsuario.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Ingrese su nombre");
         JPasswordFieldContraseña.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Ingrese su contraseña");
-                
+
         JLabel JLabel1 = new JLabel("Bienvenidos");
         JLabel1.putClientProperty(FlatClientProperties.STYLE, "" + "font:bold +10");
         JLabel JLabel2 = new JLabel("Por favor ingrese secion para poder continuar");
@@ -54,7 +60,31 @@ public class VistaLogin extends JPanel {
         panel.add(JPasswordFieldContraseña);
         panel.add(CheckboxRecordar, "grow 0");
         panel.add(JButtonEntrar, "gapy 10");
+        panel.add(registroUsuarioNuevo());
+
         add(panel);
     }
 
+    private Component registroUsuarioNuevo() {
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
+        panel.putClientProperty(FlatClientProperties.STYLE, "" + "background:null");
+        JButton entrarRegistro = new JButton("<html><a href=\"#\">Sign up</a></html>");
+        entrarRegistro.putClientProperty(FlatClientProperties.STYLE, "" + "border:3,3,3,3");
+        entrarRegistro.setContentAreaFilled(false);
+        entrarRegistro.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        entrarRegistro.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+        });
+        JLabel titulo = new JLabel("No tienes una cuenta?");
+        titulo.putClientProperty(FlatClientProperties.STYLE, ""
+                + "[light]foreground:lighten(@foreground,30%); "
+                + "[dark]background:darken(@foreground,30%);");
+        panel.add(titulo);
+        panel.add(entrarRegistro);
+        
+        return panel;
+    }
 }
